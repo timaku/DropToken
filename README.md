@@ -10,11 +10,11 @@ draw. If a player tries to put a token in a column that is already full, that
 results in an error state, and the player must play again until the play a
 valid move.
 
-##Interface
+## Interface
 CLI that loops over stdIn taking commands, and prints out responses
 based on those commands.  
 
-####Commands include:    
+#### Commands include:    
 PUT <column> (OK | ERROR | WIN | DRAW)  
 GET list of ordered moves made to each column  
 BOARD a 4x4 matrix that shows the board state:  
