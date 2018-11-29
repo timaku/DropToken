@@ -19,5 +19,4 @@ public class DropTokenMain {
             line = scan.nextLine();
         }
     }
-
 }
