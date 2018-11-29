@@ -1,3 +1,6 @@
+/*
+Copyright 2018. Written by Timothy Nguyen
+ */
 public class DropTokenView {
 
     public void printBoard(int[][] board) {

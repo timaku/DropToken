@@ -1,9 +1,7 @@
 /*
 Copyright 2018. Written by Timothy Nguyen
  */
-
 import java.util.*;
-
 /**
  * Contains the state for a game of 9dt or 98point6 drop token. This game is similar to
  * connect 4 played on a 4x4 board. Only 2 players can play.
@@ -65,8 +63,6 @@ public class DropTokenModel {
      * return "DRAW". If the token that is placed results in 4 in a row for the current player,
      * return "WIN". If the token was placed in a valid spot but there was no winner, return
      * "OK".
-     *
-     * This method
      *
      * @param col an int representing the column to place the current player's token
      * @return a String that is either "ERROR", "DRAW", "WIN", or "OK"
@@ -162,12 +158,18 @@ public class DropTokenModel {
         return "WIN";
     }
 
+    /**
+     * Returns a representation of the board
+     * @return A 2-D int array where columns are the 1st index and rows the 2nd.
+     *         A 1 in the array represents player 1's tokens and 2 is player 2's.
+     *         A 0 means no token has been played there.
+     */
     public int[][] getBoard() {
         int[][] boardCopy = new int[BOARD_SIZE][BOARD_SIZE];
         for(int i = 1; i <= BOARD_SIZE; i++) {
             List<Integer> currCol = board.get(i);
             for(int j = 1; j <= BOARD_SIZE; j++) {
-                if (currCol.size() <= j) { // indicates empty column
+                if (currCol.size() <= j) {   // indicates empty column
                     boardCopy[i-1][j-1] = 0;
                 } else {
                     boardCopy[i-1][j-1] = currCol.get(j);
@@ -177,6 +179,10 @@ public class DropTokenModel {
         return boardCopy;
     }
 
+    /**
+     * A game is over if it is a draw or somebody has won
+     * @return true if game is over, false otherwise
+     */
     public boolean isGameOver() {
         return gameOver;
     }
