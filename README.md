@@ -10,7 +10,7 @@ The game is written in Java to use a command-line interface.
 Note: You need to have Java 8 or greater installed to play
 
 
-##Description
+## Description
 Drop Token takes place on a 4x4 grid. A token is dropped along a
 column (labeled 1-4) and said token goes to the lowest unoccupied
 row of the board. A player wins when they have 4 tokens next to each
