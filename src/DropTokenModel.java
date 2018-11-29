@@ -71,9 +71,7 @@ public class DropTokenModel {
         if (gameOver) {
             return "GAME OVER";
         }
-
         int player = playerOneTurn ? 1 : 2;
-
         List<Integer> column = board.get(col);
         if (column.size() == BOARD_SIZE + 1) {
             return "ERROR";
@@ -85,14 +83,32 @@ public class DropTokenModel {
         // switch to other player for next turn
         playerOneTurn = !playerOneTurn;
 
+        // check for a win at the column we added to
+        boolean colWin = checkColumnWin(column, player);
+        int row = column.size() - 1;
+        // check for a win in the row we added to
+        boolean rowWin = checkRowWin(row, player);
+        // check for a diagonal win with the token we added
+        boolean diagWin = checkDiagonalWin(col, row, player);
+        boolean win = colWin || rowWin || diagWin;
+        if (win) {
+            gameOver = true;
+            return "WIN";
+        } else {
+            if (moves.size() == BOARD_SIZE * BOARD_SIZE) {  // board is full
+                gameOver = true;
+                return "DRAW";
+            } else {
+                return "OK";
+            }
+        }
+    }
 
-        // check for wins at the added location...
-        // check colum for win
+    /*
+    Returns true if the given column has 4 in a row of player, false otherwise.
+     */
+    private boolean checkColumnWin(List<Integer> column, int player) {
         boolean colWin = true;
-        boolean rowWin = true;
-        boolean diagWin = true;
-
-        // check colWin
         if (column.size() == BOARD_SIZE + 1) {
             for(int i = 1; i <= BOARD_SIZE; i++) {
                 if (column.get(i) != player) {
@@ -103,12 +119,17 @@ public class DropTokenModel {
         } else {
             colWin = false;
         }
+        return colWin;
+    }
 
-        // check rowWin
-        int row = column.size() - 1;
+    /*
+    Returns true if the given row has 4 in a row of player, false otherwise.
+     */
+    private boolean checkRowWin(int row, int player) {
+        boolean rowWin = true;
         for(int i = 1; i <= BOARD_SIZE; i++) {
             if (board.get(i).size() > row) {  // there exists a token in column i at row row
-                if (board.get(i).get(row) != player) {  // that token does not match what was played
+                if (board.get(i).get(row) != player) {
                     rowWin = false;
                     break;
                 }
@@ -117,10 +138,17 @@ public class DropTokenModel {
                 break;
             }
         }
+        return rowWin;
+    }
 
-        // check diag
+    /*
+    Returns true if there is 4 in a row in a diagonal on the board for player, false otherwise.
+     */
+    private boolean checkDiagonalWin(int col, int row, int player) {
+        boolean diagWin = true;
         boolean positiveDiagWin = true;
         boolean negativeDiagWin = true;
+        List<Integer> column;
         if ((col == row) || (col + row == 1 + BOARD_SIZE)) {
             for(int i = 1; i <= BOARD_SIZE; i++) {
                 column = board.get(i);
@@ -144,18 +172,7 @@ public class DropTokenModel {
         } else {
             diagWin = false;
         }
-
-        boolean win = colWin || rowWin || diagWin;
-        if (!win) {
-            if (moves.size() == BOARD_SIZE * BOARD_SIZE) {
-                gameOver = true;
-                return "DRAW";
-            } else {
-                return "OK";
-            }
-        }
-        gameOver = true;
-        return "WIN";
+        return diagWin;
     }
 
     /**
@@ -186,7 +203,4 @@ public class DropTokenModel {
     public boolean isGameOver() {
         return gameOver;
     }
-
-
-
 }

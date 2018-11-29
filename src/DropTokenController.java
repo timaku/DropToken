@@ -6,6 +6,12 @@ Copyright 2018. Written by Timothy Nguyen
  * This controller receives valid commands via Strings and updates the given model and view appropriately.
  */
 public class DropTokenController {
+    private static String INVALID_PUT_COLUMN_ERROR_MESSAGE = "Invalid column number for PUT, please choose number " +
+            "between 1 and 4 inclusive";
+    private static String INVALID_COMMAND_ERROR_MESSAGE = "Command not recognized, please use PUT <column>, GET, " +
+            "BOARD, or EXIT";
+    private static String GAME_OVER_NO_PUTS_ERROR_MESSAGE = "Cannot PUT because game has ended";
+
     private DropTokenModel model;
     private DropTokenView view;
 
@@ -30,7 +36,7 @@ public class DropTokenController {
             return;
         } else if (line.startsWith("PUT")) {
             if (model.isGameOver()) {
-                System.out.println("Cannot PUT because game has ended");
+                System.out.println(GAME_OVER_NO_PUTS_ERROR_MESSAGE);
                 return;
             }
             String[] tokens = line.split(" ");
@@ -54,11 +60,11 @@ public class DropTokenController {
             if (line.matches("PUT [1234]")) {
                 return true;
             } else {
-                System.out.println("Invalid column number for PUT, please choose number between 1 and 4 inclusive");
+                System.out.println(INVALID_PUT_COLUMN_ERROR_MESSAGE);
                 return false;
             }
         } else {
-            System.out.println("Command not recognized, please use PUT <column>, GET, BOARD, or EXIT");
+            System.out.println(INVALID_COMMAND_ERROR_MESSAGE);
             return false;
         }
     }
