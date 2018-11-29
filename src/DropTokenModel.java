@@ -62,10 +62,10 @@ public class DropTokenModel {
      * return "ERROR". If the token fills the last spot on the board and there is no winner,
      * return "DRAW". If the token that is placed results in 4 in a row for the current player,
      * return "WIN". If the token was placed in a valid spot but there was no winner, return
-     * "OK".
+     * "OK". Returns "GAME OVER" if there has been a draw or win.
      *
      * @param col an int representing the column to place the current player's token
-     * @return a String that is either "ERROR", "DRAW", "WIN", or "OK"
+     * @return a String that is either "ERROR", "DRAW", "WIN", "OK", or "GAME OVER"
      */
     public String putToken(int col) {
         if (gameOver) {
