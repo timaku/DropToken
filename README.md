@@ -1,5 +1,16 @@
 # DropToken
 
+## How to compile and run the game
+The game is written in Java to use a command-line interface.
+1. Clone the repo
+2. In the src folder run this command from terminal:  
+``` > javac DropTokenMain.java ```
+3. Now the class files have been compiled. Run the program with:  
+```> java DropTokenMain```  
+Note: You need to have Java 8 or greater installed to play
+
+
+##Description
 Drop Token takes place on a 4x4 grid. A token is dropped along a
 column (labeled 1-4) and said token goes to the lowest unoccupied
 row of the board. A player wins when they have 4 tokens next to each
@@ -30,65 +41,67 @@ BOARD a 4x4 matrix that shows the board state:
 EXIT ends the program.
 
 
+
+
 ## Example game  
 Lines prefixed with > indicate input from the user(s). All other lines are
 output from the program.  
-> GET  
-> BOARD  
+>$ GET  
+>$ BOARD  
 | 0 0 0 0  
 | 0 0 0 0  
 | 0 0 0 0  
 | 0 0 0 0  
 +--------  
  1 2 3 4  
-> PUT 1  
+>$ PUT 1  
 OK  
-> PUT 4  
+>$ PUT 4  
 OK  
-> PUT 2  
+>$ PUT 2  
 OK  
-> PUT 3  
+>$ PUT 3  
 OK  
-> BOARD  
+>$ BOARD  
 | 0 0 0 0  
 | 0 0 0 0  
 | 0 0 0 0  
 | 1 1 2 2  
 +--------  
  1 2 3 4  
-> PUT 1  
+>$ PUT 1  
 OK  
-> PUT 1  
+>$ PUT 1  
 OK  
-> PUT 1  
+>$ PUT 1  
 OK  
-> PUT 1   
+>$ PUT 1   
 ERROR  
-> BOARD  
+>$ BOARD  
 | 1 0 0 0  
 | 2 0 0 0  
 | 1 0 0 0  
 | 1 1 2 2  
 +--------  
  1 2 3 4  
-> PUT 3  
+>$ PUT 3  
 OK  
-> PUT 2  
+>$ PUT 2  
 OK  
-> PUT 3  
+>$ PUT 3  
 OK  
-> PUT 2  
+>$ PUT 2  
 OK  
-> PUT 3  
+>$ PUT 3  
 WIN  
-> BOARD  
+>$ BOARD  
 | 1 0 2 0  
 | 2 1 2 0  
 | 1 1 2 0  
 | 1 1 2 2  
 +--------  
  1 2 3 4  
-> GET  
+>$ GET  
 1  
 4  
 2  
@@ -101,4 +114,4 @@ WIN
 3  
 2  
 3  
-> EXIT  
+>$ EXIT  

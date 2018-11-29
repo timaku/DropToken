@@ -24,7 +24,6 @@ public class DropTokenModel {
 
     private List<List<Integer>> board;
     private boolean gameOver;
-    private String gameOverState;
     private boolean playerOneTurn;
     private List<Integer> moves;
 
@@ -74,7 +73,7 @@ public class DropTokenModel {
      */
     public String putToken(int col) {
         if (gameOver) {
-            return "GAME OVER: "
+            return "GAME OVER";
         }
 
         int player = playerOneTurn ? 1 : 2;
